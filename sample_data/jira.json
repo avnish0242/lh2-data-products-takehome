@@ -1,0 +1,18 @@
+[
+  {
+    "key": "PAY-123",
+    "status": "Done",
+    "assignee_email": "alice.chen@acme.com",
+    "export_eligible": true,
+    "comments": [
+      {
+        "author": "Priya Nair",
+        "body": "Reviewed. Root cause is null cart. Approving fix."
+      },
+      {
+        "author": "alex.kumar@acme.com",
+        "body": "linked PR #88"
+      }
+    ]
+  }
+]

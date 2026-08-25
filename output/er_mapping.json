@@ -1,0 +1,611 @@
+{
+  "generated_by": "resolve_entities.py",
+  "tier_legend": {
+    "1": "emp_id (authoritative anchor)",
+    "2": "email (work or raw, exact match)",
+    "3": "platform user id (Slack user <-> HR slack_handle)",
+    "4": "github_login (exact match)",
+    "5": "name (full-name exact match, or bare-first-name only with channel/team corroboration)"
+  },
+  "people": [
+    {
+      "surrogate_id": "PERSON_0001",
+      "display_name_for_review_only": "Alice Chen",
+      "team": "payments",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "emp_id",
+          "value": "10492",
+          "tier": 1,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "work_email",
+          "value": "alice.chen@acme.com",
+          "tier": 2,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "slack_handle",
+          "value": "U123ALICE",
+          "tier": 3,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "github_login",
+          "value": "achen",
+          "tier": 4,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "Alice Chen",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "U123ALICE",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=payments)",
+          "record_ref": "slack:C100:2026-03-01T09:00:00Z"
+        },
+        {
+          "source": "jira",
+          "type": "assignee_email",
+          "value": "alice.chen@acme.com",
+          "tier": 2,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Jira assignee_email field, issue PAY-123",
+          "record_ref": "jira:PAY-123:assignee"
+        },
+        {
+          "source": "github",
+          "type": "pr_author",
+          "value": "Alice Chen <alice.chen@acme.com>",
+          "tier": 2,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "GitHub PR author field, PR #88",
+          "record_ref": "github:pr#88:author"
+        },
+        {
+          "source": "github",
+          "type": "commit_author_login",
+          "value": "achen",
+          "tier": 4,
+          "method": "exact",
+          "confidence": 0.9,
+          "evidence": "Commit a1b2 author field, PR #88",
+          "record_ref": "github:pr#88:commit:a1b2"
+        },
+        {
+          "source": "slack",
+          "type": "free_text_full_name",
+          "value": "Alice Chen",
+          "tier": 5,
+          "method": "exact",
+          "confidence": 0.75,
+          "evidence": "Full name mentioned in free text: \"Payments page throws 500 on empty cart. Can Alice Chen take PAY-123? cc Priya to review\"",
+          "record_ref": "slack:C100:2026-03-01T09:00:00Z"
+        },
+        {
+          "source": "slack",
+          "type": "free_text_email",
+          "value": "alice.chen@acme.com",
+          "tier": 2,
+          "method": "exact",
+          "confidence": 0.9,
+          "evidence": "Email mentioned in free text: \"I can pair with alice.chen@acme.com on it\"",
+          "record_ref": "slack:C100:2026-03-01T09:12:00Z"
+        }
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0002",
+      "display_name_for_review_only": "Alex Kumar",
+      "team": "payments",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "emp_id",
+          "value": "10533",
+          "tier": 1,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "work_email",
+          "value": "alex.kumar@acme.com",
+          "tier": 2,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "slack_handle",
+          "value": "U201ALEX",
+          "tier": 3,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "github_login",
+          "value": "akumar-acme",
+          "tier": 4,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "Alex Kumar",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "U201ALEX",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=payments)",
+          "record_ref": "slack:C100:2026-03-01T09:12:00Z"
+        },
+        {
+          "source": "jira",
+          "type": "comment_author_email",
+          "value": "alex.kumar@acme.com",
+          "tier": 2,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Jira comment author field, issue PAY-123",
+          "record_ref": "jira:PAY-123:comment[1]"
+        }
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0003",
+      "display_name_for_review_only": "Priya Nair",
+      "team": "payments",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "emp_id",
+          "value": "10560",
+          "tier": 1,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "work_email",
+          "value": "priya.nair@acme.com",
+          "tier": 2,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "slack_handle",
+          "value": "U330PRIYA",
+          "tier": 3,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "github_login",
+          "value": "pnair",
+          "tier": 4,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "Priya Nair",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "U330PRIYA",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=payments)",
+          "record_ref": "slack:C100:2026-03-01T09:20:00Z"
+        },
+        {
+          "source": "jira",
+          "type": "comment_author_name",
+          "value": "Priya Nair",
+          "tier": 5,
+          "method": "exact",
+          "confidence": 0.8,
+          "evidence": "Jira comment author field is a full-name string, not verified against a directory schema (see requirements_analysis.md open question) \u2014 issue PAY-123",
+          "record_ref": "jira:PAY-123:comment[0]"
+        },
+        {
+          "source": "slack",
+          "type": "bare_first_name_contextual",
+          "value": "Priya",
+          "tier": 5,
+          "method": "contextual",
+          "confidence": 0.55,
+          "evidence": "Bare first name \"Priya\" resolved via channel team-affinity: channel 'payments' dominated by team 'payments' (3 structured-field matches), uniquely matching Priya Nair. Message: \"Payments page throws 500 on empty cart. Can Alice Chen take PAY-123? cc Priya to review\"",
+          "record_ref": "slack:C100:2026-03-01T09:00:00Z"
+        }
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0004",
+      "display_name_for_review_only": "Priya Shah",
+      "team": "legal",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "emp_id",
+          "value": "10801",
+          "tier": 1,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "work_email",
+          "value": "priya.shah@acme.com",
+          "tier": 2,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "slack_handle",
+          "value": "U441PRIYA",
+          "tier": 3,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "github_login",
+          "value": "pshah",
+          "tier": 4,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "Priya Shah",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "U441PRIYA",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=legal-ops)",
+          "record_ref": "slack:C200:2026-03-01T10:05:00Z"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "U441PRIYA",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=legal-sensitive)",
+          "record_ref": "slack:C900:2026-03-01T11:40:00Z"
+        },
+        {
+          "source": "slack",
+          "type": "bare_first_name_contextual",
+          "value": "Priya",
+          "tier": 5,
+          "method": "contextual",
+          "confidence": 0.55,
+          "evidence": "Bare first name \"Priya\" resolved via channel team-affinity: channel 'legal-ops' dominated by team 'legal' (2 structured-field matches), uniquely matching Priya Shah. Message: \"cc Priya on the Globex contract language before we send anything out\"",
+          "record_ref": "slack:C200:2026-03-01T10:00:00Z"
+        },
+        {
+          "source": "slack",
+          "type": "bare_first_name_contextual",
+          "value": "Priya",
+          "tier": 5,
+          "method": "contextual",
+          "confidence": 0.55,
+          "evidence": "Bare first name \"Priya\" resolved via channel team-affinity: channel 'legal-ops' dominated by team 'legal' (2 structured-field matches), uniquely matching Priya Shah. Message: \"Priya here \u2014 legal queue is slammed this week, ping me only for contract review\"",
+          "record_ref": "slack:C200:2026-03-01T10:05:00Z"
+        },
+        {
+          "source": "slack",
+          "type": "free_text_full_name",
+          "value": "Priya Shah",
+          "tier": 5,
+          "method": "exact",
+          "confidence": 0.75,
+          "evidence": "Full name mentioned in free text: \"Re PAY-123 \u2014 this customer, Globex, is mid-dispute. Keep the fix quiet. \u2014 Priya Shah\"",
+          "record_ref": "slack:C900:2026-03-01T11:40:00Z"
+        }
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0005",
+      "display_name_for_review_only": "Jordan Lee",
+      "team": "legal",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "emp_id",
+          "value": "10822",
+          "tier": 1,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "work_email",
+          "value": "jordan.lee@acme.com",
+          "tier": 2,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "slack_handle",
+          "value": "U510JORDAN",
+          "tier": 3,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "github_login",
+          "value": "jlee",
+          "tier": 4,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "Jordan Lee",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "U510JORDAN",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=legal-ops)",
+          "record_ref": "slack:C200:2026-03-01T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0006",
+      "display_name_for_review_only": "Alex K.",
+      "team": "contractors",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "slack_handle",
+          "value": "UNK_ALEXK",
+          "tier": 3,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "Alex K.",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "slack",
+          "type": "user_id",
+          "value": "UNK_ALEXK",
+          "tier": 3,
+          "method": "exact",
+          "confidence": 0.95,
+          "evidence": "Slack `user` field matched HR slack_handle (channel=payments)",
+          "record_ref": "slack:C100:2026-03-02T08:00:00Z"
+        },
+        {
+          "source": "slack",
+          "type": "free_text_full_name",
+          "value": "Alex K.",
+          "tier": 5,
+          "method": "exact",
+          "confidence": 0.75,
+          "evidence": "Full name mentioned in free text: \"Alex K. here from the contractor side, happy to help if needed\"",
+          "record_ref": "slack:C100:2026-03-02T08:00:00Z"
+        }
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0007",
+      "display_name_for_review_only": "A. Kumar",
+      "team": "contractors",
+      "identifiers": [
+        {
+          "source": "hr",
+          "type": "work_email",
+          "value": "akumar@gmail.com",
+          "tier": 2,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "github_login",
+          "value": "akumar-ext",
+          "tier": 4,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "hr",
+          "type": "display_name",
+          "value": "A. Kumar",
+          "tier": 5,
+          "method": "authoritative",
+          "confidence": 1.0,
+          "evidence": "HR roster row (authoritative root)",
+          "record_ref": "hr_directory.csv"
+        },
+        {
+          "source": "github",
+          "type": "commit_author_email",
+          "value": "akumar@gmail.com",
+          "tier": 2,
+          "method": "exact",
+          "confidence": 0.9,
+          "evidence": "Commit c3d4 author field, PR #88",
+          "record_ref": "github:pr#88:commit:c3d4"
+        }
+      ]
+    }
+  ],
+  "candidate_links": [
+    {
+      "node_a": "PERSON_0002",
+      "node_a_name": "Alex Kumar",
+      "node_b": "PERSON_0006",
+      "node_b_name": "Alex K.",
+      "reasons": [
+        "surname/initial resemblance: 'kumar' ~ 'k'",
+        "first-name/initial resemblance: 'alex' ~ 'alex'"
+      ],
+      "confidence": 0.55,
+      "status": "open",
+      "note": "Resemblance only \u2014 no shared strong identifier (emp_id/email/slack/github) exists between these two HR rows. NOT merged. Per FR-4, a merge requires either a shared exact identifier or an explicit human-reviewed decision recorded here."
+    },
+    {
+      "node_a": "PERSON_0002",
+      "node_a_name": "Alex Kumar",
+      "node_b": "PERSON_0007",
+      "node_b_name": "A. Kumar",
+      "reasons": [
+        "surname/initial resemblance: 'kumar' ~ 'kumar'",
+        "shared GitHub login prefix: 'akumar-acme' ~ 'akumar-ext'",
+        "first-name/initial resemblance: 'alex' ~ 'a'"
+      ],
+      "confidence": 0.6,
+      "status": "open",
+      "note": "Resemblance only \u2014 no shared strong identifier (emp_id/email/slack/github) exists between these two HR rows. NOT merged. Per FR-4, a merge requires either a shared exact identifier or an explicit human-reviewed decision recorded here."
+    },
+    {
+      "node_a": "PERSON_0006",
+      "node_a_name": "Alex K.",
+      "node_b": "PERSON_0007",
+      "node_b_name": "A. Kumar",
+      "reasons": [
+        "surname/initial resemblance: 'k' ~ 'kumar'",
+        "first-name/initial resemblance: 'alex' ~ 'a'",
+        "same HR team: 'contractors'"
+      ],
+      "confidence": 0.6,
+      "status": "open",
+      "note": "Resemblance only \u2014 no shared strong identifier (emp_id/email/slack/github) exists between these two HR rows. NOT merged. Per FR-4, a merge requires either a shared exact identifier or an explicit human-reviewed decision recorded here."
+    }
+  ],
+  "unresolved_mentions": [],
+  "summary": {
+    "people_resolved": 7,
+    "candidate_links_open": 3,
+    "unresolved_mention_count": 0,
+    "note": "In this sample, every raw mention ties deterministically or contextually to some HR row (even the Slack-only 'Alex K.' contractor row resolves via its own HR-assigned slack_handle). The genuine ambiguity in this dataset is at the identity-MERGE level, not the mention level: see candidate_links for the three-way 'Alex/Kumar' cluster that is deliberately left unmerged."
+  }
+}

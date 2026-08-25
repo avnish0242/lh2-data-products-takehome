@@ -1,0 +1,58 @@
+[
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "user": "U123ALICE",
+    "ts": "2026-03-01T09:00:00Z",
+    "text": "Payments page throws 500 on empty cart. Can Alice Chen take PAY-123? cc Priya to review"
+  },
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "user": "U201ALEX",
+    "ts": "2026-03-01T09:12:00Z",
+    "text": "I can pair with alice.chen@acme.com on it"
+  },
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "user": "U330PRIYA",
+    "ts": "2026-03-01T09:20:00Z",
+    "text": "I'll take the review on PAY-123"
+  },
+  {
+    "channel": "C200",
+    "channel_name": "legal-ops",
+    "channel_visibility": "public",
+    "user": "U510JORDAN",
+    "ts": "2026-03-01T10:00:00Z",
+    "text": "cc Priya on the Globex contract language before we send anything out"
+  },
+  {
+    "channel": "C200",
+    "channel_name": "legal-ops",
+    "channel_visibility": "public",
+    "user": "U441PRIYA",
+    "ts": "2026-03-01T10:05:00Z",
+    "text": "Priya here — legal queue is slammed this week, ping me only for contract review"
+  },
+  {
+    "channel": "C900",
+    "channel_name": "legal-sensitive",
+    "channel_visibility": "private",
+    "user": "U441PRIYA",
+    "ts": "2026-03-01T11:40:00Z",
+    "text": "Re PAY-123 — this customer, Globex, is mid-dispute. Keep the fix quiet. — Priya Shah"
+  },
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "user": "UNK_ALEXK",
+    "ts": "2026-03-02T08:00:00Z",
+    "text": "Alex K. here from the contractor side, happy to help if needed"
+  }
+]

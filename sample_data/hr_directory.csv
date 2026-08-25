@@ -1,0 +1,8 @@
+emp_id,display_name,work_email,slack_handle,github_login,team
+10492,Alice Chen,alice.chen@acme.com,U123ALICE,achen,payments
+10533,Alex Kumar,alex.kumar@acme.com,U201ALEX,akumar-acme,payments
+10560,Priya Nair,priya.nair@acme.com,U330PRIYA,pnair,payments
+10801,Priya Shah,priya.shah@acme.com,U441PRIYA,pshah,legal
+10822,Jordan Lee,jordan.lee@acme.com,U510JORDAN,jlee,legal
+,Alex K.,,UNK_ALEXK,,contractors
+,A. Kumar,akumar@gmail.com,,akumar-ext,contractors

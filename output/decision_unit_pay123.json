@@ -1,0 +1,135 @@
+{
+  "decision_unit_id": "DU_PAY-123",
+  "summary": "Null-cart 500 error on the payments page, reported in Slack, tracked as Jira PAY-123, reviewed, and fixed in merged GitHub PR #88.",
+  "correlation_method": "explicit: Slack channel C100 thread (same-day) + any record naming 'PAY-123'",
+  "timeline": [
+    {
+      "ts": "2026-03-01T09:00:00Z",
+      "event_type": "slack_message",
+      "actor": "PERSON_0001",
+      "role": "reporter",
+      "detail": "Payments page throws 500 on empty cart. Can PERSON_0001 take PAY-123? cc PERSON_0003 to review",
+      "citation": {
+        "source_system": "slack",
+        "record_id": "C100@2026-03-01T09:00:00Z"
+      }
+    },
+    {
+      "ts": "2026-03-01T09:12:00Z",
+      "event_type": "slack_message",
+      "actor": "PERSON_0002",
+      "role": "participant",
+      "detail": "I can pair with PERSON_0001 on it",
+      "citation": {
+        "source_system": "slack",
+        "record_id": "C100@2026-03-01T09:12:00Z"
+      }
+    },
+    {
+      "ts": "2026-03-01T09:20:00Z",
+      "event_type": "slack_message",
+      "actor": "PERSON_0003",
+      "role": "participant",
+      "detail": "I'll take the review on PAY-123",
+      "citation": {
+        "source_system": "slack",
+        "record_id": "C100@2026-03-01T09:20:00Z"
+      }
+    },
+    {
+      "ts": null,
+      "event_type": "jira_assignment",
+      "actor": "PERSON_0001",
+      "role": "assignee",
+      "detail": "PAY-123 status=Done",
+      "citation": {
+        "source_system": "jira",
+        "record_id": "PAY-123"
+      }
+    },
+    {
+      "ts": null,
+      "event_type": "jira_comment",
+      "actor": "PERSON_0003",
+      "role": "reviewer",
+      "detail": "Reviewed. Root cause is null cart. Approving fix.",
+      "citation": {
+        "source_system": "jira",
+        "record_id": "PAY-123#comment[0]"
+      }
+    },
+    {
+      "ts": null,
+      "event_type": "jira_comment",
+      "actor": "PERSON_0002",
+      "role": "participant",
+      "detail": "linked PR #88",
+      "citation": {
+        "source_system": "jira",
+        "record_id": "PAY-123#comment[1]"
+      }
+    },
+    {
+      "ts": null,
+      "event_type": "pr_merged",
+      "actor": "PERSON_0001",
+      "role": "author",
+      "detail": "Fix 500 on empty cart (PAY-123)",
+      "citation": {
+        "source_system": "github",
+        "record_id": "pr#88"
+      }
+    },
+    {
+      "ts": null,
+      "event_type": "commit",
+      "actor": "PERSON_0001",
+      "role": "author",
+      "detail": "guard against null cart",
+      "citation": {
+        "source_system": "github",
+        "record_id": "pr#88:a1b2"
+      }
+    },
+    {
+      "ts": null,
+      "event_type": "commit",
+      "actor": "PERSON_0007",
+      "role": "contributor",
+      "detail": "add regression test",
+      "citation": {
+        "source_system": "github",
+        "record_id": "pr#88:c3d4"
+      }
+    }
+  ],
+  "participants": [
+    {
+      "surrogate_id": "PERSON_0001",
+      "roles": [
+        "assignee",
+        "author",
+        "reporter"
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0002",
+      "roles": [
+        "participant"
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0003",
+      "roles": [
+        "participant",
+        "reviewer"
+      ]
+    },
+    {
+      "surrogate_id": "PERSON_0007",
+      "roles": [
+        "contributor"
+      ]
+    }
+  ]
+}

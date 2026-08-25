@@ -1,0 +1,68 @@
+{
+  "next_seq": 8,
+  "people": [
+    {
+      "surrogate_id": "PERSON_0001",
+      "emp_id": "10492",
+      "work_email": "alice.chen@acme.com",
+      "slack_handle": "U123ALICE",
+      "github_login": "achen",
+      "display_name": "Alice Chen",
+      "team": "payments"
+    },
+    {
+      "surrogate_id": "PERSON_0002",
+      "emp_id": "10533",
+      "work_email": "alex.kumar@acme.com",
+      "slack_handle": "U201ALEX",
+      "github_login": "akumar-acme",
+      "display_name": "Alex Kumar",
+      "team": "payments"
+    },
+    {
+      "surrogate_id": "PERSON_0003",
+      "emp_id": "10560",
+      "work_email": "priya.nair@acme.com",
+      "slack_handle": "U330PRIYA",
+      "github_login": "pnair",
+      "display_name": "Priya Nair",
+      "team": "payments"
+    },
+    {
+      "surrogate_id": "PERSON_0004",
+      "emp_id": "10801",
+      "work_email": "priya.shah@acme.com",
+      "slack_handle": "U441PRIYA",
+      "github_login": "pshah",
+      "display_name": "Priya Shah",
+      "team": "legal"
+    },
+    {
+      "surrogate_id": "PERSON_0005",
+      "emp_id": "10822",
+      "work_email": "jordan.lee@acme.com",
+      "slack_handle": "U510JORDAN",
+      "github_login": "jlee",
+      "display_name": "Jordan Lee",
+      "team": "legal"
+    },
+    {
+      "surrogate_id": "PERSON_0006",
+      "emp_id": null,
+      "work_email": null,
+      "slack_handle": "UNK_ALEXK",
+      "github_login": null,
+      "display_name": "Alex K.",
+      "team": "contractors"
+    },
+    {
+      "surrogate_id": "PERSON_0007",
+      "emp_id": null,
+      "work_email": "akumar@gmail.com",
+      "slack_handle": null,
+      "github_login": "akumar-ext",
+      "display_name": "A. Kumar",
+      "team": "contractors"
+    }
+  ]
+}

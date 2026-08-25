@@ -1,0 +1,20 @@
+[
+  {
+    "pr": 88,
+    "status": "merged",
+    "title": "Fix 500 on empty cart (PAY-123)",
+    "author": "PERSON_0001",
+    "commits": [
+      {
+        "sha": "a1b2",
+        "author": "PERSON_0001",
+        "message": "guard against null cart"
+      },
+      {
+        "sha": "c3d4",
+        "author": "PERSON_0007",
+        "message": "add regression test"
+      }
+    ]
+  }
+]

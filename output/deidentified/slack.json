@@ -1,0 +1,58 @@
+[
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "ts": "2026-03-01T09:00:00Z",
+    "user": "PERSON_0001",
+    "text": "Payments page throws 500 on empty cart. Can PERSON_0001 take PAY-123? cc PERSON_0003 to review"
+  },
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "ts": "2026-03-01T09:12:00Z",
+    "user": "PERSON_0002",
+    "text": "I can pair with PERSON_0001 on it"
+  },
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "ts": "2026-03-01T09:20:00Z",
+    "user": "PERSON_0003",
+    "text": "I'll take the review on PAY-123"
+  },
+  {
+    "channel": "C200",
+    "channel_name": "legal-ops",
+    "channel_visibility": "public",
+    "ts": "2026-03-01T10:00:00Z",
+    "user": "PERSON_0005",
+    "text": "cc PERSON_0004 on the Globex contract language before we send anything out"
+  },
+  {
+    "channel": "C200",
+    "channel_name": "legal-ops",
+    "channel_visibility": "public",
+    "ts": "2026-03-01T10:05:00Z",
+    "user": "PERSON_0004",
+    "text": "PERSON_0004 here \u2014 legal queue is slammed this week, ping me only for contract review"
+  },
+  {
+    "channel": "C900",
+    "channel_name": "legal-sensitive",
+    "channel_visibility": "private",
+    "ts": "2026-03-01T11:40:00Z",
+    "user": "PERSON_0004",
+    "text": "Re PAY-123 \u2014 this customer, Globex, is mid-dispute. Keep the fix quiet. \u2014 PERSON_0004"
+  },
+  {
+    "channel": "C100",
+    "channel_name": "payments",
+    "channel_visibility": "public",
+    "ts": "2026-03-02T08:00:00Z",
+    "user": "PERSON_0006",
+    "text": "PERSON_0006 here from the contractor side, happy to help if needed"
+  }
+]

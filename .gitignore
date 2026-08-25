@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# Poetry / venv (the venv itself lives outside the repo, under Poetry's cache dir, but ignore
+# defensively in case someone runs `poetry config virtualenvs.in-project true` locally)
+.venv/
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/

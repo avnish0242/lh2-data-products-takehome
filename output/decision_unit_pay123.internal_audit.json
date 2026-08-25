@@ -1,0 +1,14 @@
+{
+  "decision_unit_id": "DU_PAY-123",
+  "classification": "INTERNAL ONLY -- do not include in any sellable export",
+  "excluded_events": [
+    {
+      "citation": {
+        "source_system": "slack",
+        "record_id": "C900@2026-03-01T11:40:00Z"
+      },
+      "reason": "private_channel (channel_visibility='private')",
+      "note": "Re PAY-123 \u2014 this customer, Globex, is mid-dispute. Keep the fix quiet. \u2014 PERSON_0004"
+    }
+  ]
+}

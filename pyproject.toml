@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "lh2-data-products-takehome"
+version = "0.1.0"
+description = "Entity resolution, consistent de-identification, and decision-unit assembly for the LH2 Data Products take-home."
+authors = ["Avnish Kumar <avnish.dbg@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "lh2_pipeline", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+# Deliberately no runtime dependencies -- the pipeline itself is stdlib-only (csv/json/re/
+# dataclasses/pathlib). Poetry is used here for reproducible environment + dependency management
+# and a clean dev/test workflow, not because the pipeline needs a dependency tree.
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+
+[tool.poetry.scripts]
+resolve-entities = "lh2_pipeline.resolve_entities:main"
+deidentify = "lh2_pipeline.deidentify:main"
+assemble-decision-unit = "lh2_pipeline.assemble_decision_unit:main"
+run-pipeline = "lh2_pipeline.pipeline:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

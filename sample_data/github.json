@@ -1,0 +1,20 @@
+[
+  {
+    "pr": 88,
+    "status": "merged",
+    "title": "Fix 500 on empty cart (PAY-123)",
+    "author": "Alice Chen <alice.chen@acme.com>",
+    "commits": [
+      {
+        "sha": "a1b2",
+        "author": "achen",
+        "message": "guard against null cart"
+      },
+      {
+        "sha": "c3d4",
+        "author": "akumar@gmail.com",
+        "message": "add regression test"
+      }
+    ]
+  }
+]
