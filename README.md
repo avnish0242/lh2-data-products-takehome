@@ -79,10 +79,13 @@ actually wired together correctly, not just individually correct in memory.
 - `output/er_mapping.json` — 7 people resolved (every HR row, including the thinly-attested
   Slack-only contractor row), **3 open-but-unmerged candidate links** (the three-way "Alex/Kumar"
   cluster — see the design note), **0 forced/unresolved mentions** in this sample.
-- `output/identity_registry.json` — the persistent surrogate-ID store (docs/architecture.md §7.1):
-  what makes IDs stable across separate runs as the HR roster changes, instead of being derived
-  from row position. Regenerated/extended on every `resolve-entities` run; not itself a sellable
-  artifact, same access tier as the crosswalk.
+- `output/identity_registry.json` *(gitignored, not in this repo)* — the persistent surrogate-ID
+  store (docs/architecture.md §7.1): what makes IDs stable across separate runs as the HR roster
+  changes, instead of being derived from row position. Regenerated locally on every
+  `resolve-entities` run. Not a requested deliverable, and kept out of the repo on the same
+  principle as NFR-5: crosswalk-adjacent files stay separate from what's published, even in a
+  fictional-data take-home. `output/er_mapping.json` above is the one crosswalk-like file that
+  *is* checked in, because the assignment explicitly asks for it as a deliverable.
 - `output/deidentified/` — slack/jira/github with every person reference (structured fields *and*
   free text) replaced by a stable surrogate id, consistent across all three files.
 - `output/decision_unit_pay123.json` — the one assembled, **sellable** decision unit.

@@ -8,6 +8,12 @@ __pycache__/
 # defensively in case someone runs `poetry config virtualenvs.in-project true` locally)
 .venv/
 
+# Internal identity-continuity store (docs/architecture.md Sec 7.1) -- not a requested deliverable,
+# just an implementation artifact for delta-ingestion ID stability. Kept out of the repo on the
+# same principle as NFR-5 (crosswalk-adjacent files stay separate from what's published); it's
+# fully regenerable via `poetry run resolve-entities`.
+output/identity_registry.json
+
 # OS
 .DS_Store
 
