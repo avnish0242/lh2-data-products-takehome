@@ -64,7 +64,7 @@ All three stages are deterministic — rerunning produces byte-identical output 
 poetry run pytest -v
 ```
 
-42 tests across 5 files. Unit tests pin down the specific judgment calls documented in the notes
+44 tests across 5 files. Unit tests pin down the specific judgment calls documented in the notes
 (e.g. `test_alex_kumar_and_a_kumar_contractor_are_different_surrogates`,
 `test_candidate_link_requires_surname_or_login_anchor_not_bare_first_initial`,
 `test_private_globex_message_excluded_from_sellable_unit`) so a future change can't silently flip

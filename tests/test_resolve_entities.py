@@ -164,7 +164,8 @@ def test_ambiguous_bare_name_with_no_channel_context_stays_unresolved():
         "PERSON_0001": _hr_node("PERSON_0001", "Sam Diaz", "sales"),
         "PERSON_0002": _hr_node("PERSON_0002", "Sam Lee", "support"),
     }
-    idx = {"by_email": {}, "by_full_name": {}, "by_first_name": {"sam": ["PERSON_0001", "PERSON_0002"]}}
+    idx = {"by_email": {}, "by_full_name": {}, "full_name_patterns": [],
+           "by_first_name": {"sam": ["PERSON_0001", "PERSON_0002"]}}
     unresolved = []
     scan_free_text(nodes, idx, "slack", "slack:C999:t1", "cc Sam on this one", "unmapped-channel",
                     channel_team_votes={}, unresolved=unresolved)
@@ -176,9 +177,41 @@ def test_ambiguous_bare_name_with_no_channel_context_stays_unresolved():
 def test_unambiguous_bare_name_resolves_without_context():
     """A first name that's unique across the whole org resolves even without channel corroboration."""
     nodes = {"PERSON_0001": _hr_node("PERSON_0001", "Jordan Lee", "legal")}
-    idx = {"by_email": {}, "by_full_name": {}, "by_first_name": {"jordan": ["PERSON_0001"]}}
+    idx = {"by_email": {}, "by_full_name": {}, "full_name_patterns": [],
+           "by_first_name": {"jordan": ["PERSON_0001"]}}
     unresolved = []
     scan_free_text(nodes, idx, "slack", "slack:C1:t1", "Jordan will follow up", None,
                     channel_team_votes={}, unresolved=unresolved)
     assert unresolved == []
     assert any(i.type == "free_text_name_unique" for i in nodes["PERSON_0001"].identifiers)
+
+
+# --------------------------------------------------------------------------------------
+# Regression test for the compile-hoist performance fix: full-name regexes are precomputed
+# once by build_nodes(), not recompiled per message inside scan_free_text().
+# --------------------------------------------------------------------------------------
+
+def test_full_name_patterns_precomputed_once_and_match_correctly(sample_hr):
+    _nodes, idx, _registry = re_mod.build_nodes(sample_hr, registry=None)
+    assert "full_name_patterns" in idx
+    # 7 people, all with distinct full display names -> all 7 should have a precompiled pattern.
+    assert len(idx["full_name_patterns"]) == 7
+    assert all(hasattr(pattern, "search") for pattern, _sid in idx["full_name_patterns"])
+
+    # And they still actually match, exercised the same way scan_free_text uses them.
+    matches = [sid for pattern, sid in idx["full_name_patterns"] if pattern.search("Alice Chen said hi")]
+    assert len(matches) == 1
+
+
+def test_duplicate_full_names_excluded_from_precomputed_patterns():
+    """Two different people sharing the exact same full display name must not get a precompiled
+    (necessarily ambiguous) pattern -- same exclusion the old per-message loop applied via
+    `len(sids) != 1`, just computed once instead of on every call."""
+    rows = [
+        {"emp_id": "1", "display_name": "Sam Lee", "work_email": "sam1@acme.com",
+         "slack_handle": "", "github_login": "", "team": "eng"},
+        {"emp_id": "2", "display_name": "Sam Lee", "work_email": "sam2@acme.com",
+         "slack_handle": "", "github_login": "", "team": "eng"},
+    ]
+    _nodes, idx, _registry = re_mod.build_nodes(rows, registry=None)
+    assert idx["full_name_patterns"] == []

@@ -271,9 +271,20 @@ def build_nodes(hr_rows, registry: dict | None = None):
             first = full.split(" ")[0].rstrip(".")
             by_first_name.setdefault(first, []).append(node.surrogate_id)
 
+    # Precompiled once per run, not once per (message, name) pair -- scan_free_text() used to
+    # re-`re.compile()` every unambiguous full name's pattern on every single free-text record it
+    # scanned. That's pure waste at any data volume, independent of the still-open O(messages x
+    # people) search-complexity question tracked in docs/architecture.md Sec 6 (this hoist doesn't
+    # fix that -- it still runs `len(full_name_patterns)` searches per message -- it only removes
+    # the redundant compilation on top of it).
+    full_name_patterns = [
+        (re.compile(r"\b" + re.escape(name).replace(r"\ ", r"\.?\s+") + r"\.?", re.IGNORECASE), sids[0])
+        for name, sids in by_full_name.items() if len(sids) == 1
+    ]
+
     indices = dict(by_emp_id=by_emp_id, by_email=by_email, by_slack_id=by_slack_id,
                    by_github_login=by_github_login, by_full_name=by_full_name,
-                   by_first_name=by_first_name)
+                   by_first_name=by_first_name, full_name_patterns=full_name_patterns)
     return nodes, indices, registry
 
 
@@ -378,17 +389,14 @@ def scan_free_text(nodes, idx, source, ref, text, channel_name, channel_team_vot
                                        f"Email mentioned in free text: \"{text}\"", ref))
             consumed_spans.append(m.span())
 
-    # 2b. unambiguous full-name mentions (exact match against a single HR display_name)
-    for full_name, sids in idx["by_full_name"].items():
-        if len(sids) != 1:
-            continue
-        # trailing \.? (not wrapped in another \b) lets an abbreviation's period ("Alex K.") get
-        # consumed by the match instead of left stranded in the redacted text downstream.
-        pattern = re.compile(r"\b" + re.escape(full_name).replace(r"\ ", r"\.?\s+") + r"\.?", re.IGNORECASE)
+    # 2b. unambiguous full-name mentions (exact match against a single HR display_name). Patterns
+    # are precompiled once per run in build_nodes() -- see the comment there -- not recompiled
+    # here per message.
+    for pattern, sid in idx["full_name_patterns"]:
         m = pattern.search(text)
         if m:
-            nodes[sids[0]].add(Identifier(source, "free_text_full_name", m.group(0), TIER_NAME, "exact",
-                                           0.75, f"Full name mentioned in free text: \"{text}\"", ref))
+            nodes[sid].add(Identifier(source, "free_text_full_name", m.group(0), TIER_NAME, "exact",
+                                       0.75, f"Full name mentioned in free text: \"{text}\"", ref))
             consumed_spans.append(m.span())
 
     # 2c. bare first-name mentions not already covered by a full-name match above

@@ -244,6 +244,39 @@ See `requirements_analysis.md` §6 for the full analysis. Architecturally, the r
 - **Per-tenant partitioning** of the identity graph and crosswalk store, since production LH2 serves
   many source organizations, not one.
 
+### 6.1 A concrete instance of the "blocking/indexing" point, found by inspection not by guessing
+
+The "blocking/indexing" bullet above is written at the level of the general pattern. There's a
+specific, already-identified instance of it in this codebase worth naming precisely, because
+"the free-text pass needs indexing" is a much weaker claim than pointing at the exact loop:
+
+`scan_free_text()`'s unambiguous-full-name step (§2.2 step 3, "2b" in the source) checks every
+person's full name against every free-text record — **O(messages × people)**. At 7 people and a
+dozen messages this is invisible (the whole pipeline runs in well under a tenth of a second,
+verified by the test suite's own timing). At 1000x person/message volume it's the term that
+dominates everything else in the pipeline combined: 10,000 people × 10M messages is 10^11 regex
+searches, i.e. the pipeline does not finish, not just runs slower.
+
+Two distinct things were true here, and only one has been fixed:
+- **Redundant regex compilation** inside that loop — a fresh pattern was being compiled for every
+  (message, name) pair instead of once per name. That's pure waste at *any* scale, not a scale
+  trade-off, so it's been fixed: `build_nodes()` now precompiles one pattern per unambiguous full
+  name, once per run (`idx["full_name_patterns"]`), and `scan_free_text()` just iterates the
+  precomputed list. Verified behavior-preserving — output is byte-identical before/after this
+  change — and covered by
+  `tests/test_resolve_entities.py::test_full_name_patterns_precomputed_once_and_match_correctly`.
+- **The O(messages × people) *search* complexity itself** — still there, deliberately not fixed.
+  The real fix is a single-pass multi-pattern matcher (an Aho-Corasick automaton, or one combined
+  `re.compile("name1|name2|...")` alternation built from the identity graph) so each message is
+  scanned once regardless of how many people exist, not once per person. This wasn't built because
+  it can't be honestly validated without a real 1000x-scale dataset to benchmark against, and it
+  changes matching semantics (overlap/ordering handling) in code that's currently fully tested and
+  correct at the scale that matters for this take-home. Building it speculatively, unverified,
+  against a problem that doesn't exist yet in this dataset would trade a known-good state for an
+  unknown one — the wrong call for a "do not gold-plate" brief. It's named here, specifically,
+  precisely because that's the responsible way to defer it: not "this might not scale," but "this
+  exact loop doesn't scale, here's why, and here's the fix if it's ever needed."
+
 ## 7. Delta / incremental ingestion
 
 Everything above is described against one static snapshot of `sample_data/`. Production LH2 never
